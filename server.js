@@ -36,6 +36,33 @@ function startQuestions() {
 
 
     .then((response) => {
-        
+        //switch case statements for resonse
+        switch(response.choices){
+            case 'Add New Employee':
+                addEmployee();
+                break;
+
+            case 'Add Department':
+                addDepartment();
+                break;
+
+            case 'Add Role':
+                addRole();
+                break;
+        }
     })
+}
+
+
+function addDepartment(){
+
+}
+
+function addRole(){
+
+}
+
+function addEmployee(){
+
+    
 }
