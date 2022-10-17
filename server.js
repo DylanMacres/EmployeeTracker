@@ -1,7 +1,7 @@
-const inquirer = require("inquirer");
+const inquirer = require('inquirer');
 // const db
 const mysql = require("mysql2");
-const express = require("express");
+const express = require('express');;
 const router = express.Router();
 const path = require("path");
 const { execArgv } = require("process");
@@ -9,6 +9,7 @@ const { response } = require("express");
 // const Connection = require("mysql2/typings/mysql/lib/Connection");
 const { start } = require("repl");
 const connection = require("./db/connection");
+const { finished } = require("stream");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -58,6 +59,10 @@ function startQuestions() {
         case "View Employees":
           viewEmployees();
           break;
+
+          case "Finish":
+            finish();
+            break;
       }
     });
 }
@@ -194,3 +199,11 @@ function viewDepartment() {
     startQuestions();
   });
 }
+
+
+function finish(){
+    console.log("Thank you! and goodbye");
+    process.exit();
+}
+
+startQuestions();

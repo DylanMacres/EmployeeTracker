@@ -1,4 +1,4 @@
-INSERT INTO department (name)
+INSERT INTO department (dept_name)
 VALUES ("Heart of House"),
         ('Front of House'),
         ("Management");
