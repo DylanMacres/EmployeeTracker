@@ -49,6 +49,16 @@ function startQuestions() {
             case 'Add Role':
                 addRole();
                 break;
+            case "View Departments":
+            viewDepartment();
+            break;
+            case "View Roles":
+                viewRoles();
+                break;
+            case "View Employees":
+                viewEmployees();
+                break;
+
         }
     })
 }
@@ -66,3 +76,17 @@ function addEmployee(){
 
     
 }
+
+function viewEmployees(){
+
+}
+function viewRoles(){
+
+
+}
+
+function viewDepartment(){
+
+
+}
+
