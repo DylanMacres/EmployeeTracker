@@ -6,6 +6,10 @@ const router = express.Router();
 const path = require('path');
 const { execArgv } = require("process");
 const { response } = require("express");
+// const Connection = require("mysql2/typings/mysql/lib/Connection");
+const { start } = require("repl");
+const connection = require("./db/connection")
+
 
 
 const PORT = process.env.PORT || 3001;
@@ -78,15 +82,31 @@ function addEmployee(){
 }
 
 function viewEmployees(){
+    connection.query('SELECT * FROM employee', (err, res) => {
+        if(err) throw err;
+       console.log("Viewing Employees");
+       console.table(res);
+       startQuestions();
+    });
 
 }
 function viewRoles(){
-
+    connection.query('SELECT * FROM roles', (err, res) => {
+        if(err) throw err;
+       console.log("Viewing Roles");
+       console.table(res);
+       startQuestions();
+    });
 
 }
 
 function viewDepartment(){
-
+connection.query('SELECT * FROM department', (err, res) => {
+    if(err) throw err;
+   console.log("Viewing Departments");
+   console.table(res);
+   startQuestions();
+});
 
 }
 
