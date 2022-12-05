@@ -173,23 +173,19 @@ function addRole() {
 }
 
 function addDepartment() {
-  console.log("new employee incoming");
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        message:
-          "Enter the name of the new Department you would like to include",
-        name: "newdept",
-      },
-    ])
-    .then(function (response) {
-      connection.query(`INSERT INTO department(name)  VALUES ("${response.newdept}")`)
-          console.log("Success!");
-          startQuestions();
-        }
-      );
-    };
+  prompt([
+    {
+      name: "name",
+      message: "What is the name of the department?"
+    }
+  ])
+    .then(res => {
+      let name = res;
+      db.createDepartment(name)
+        .then(() => console.log(`Added ${name.name} to the database`))
+        .then(() => startQuestions())
+    })
+}
 
 
 function viewEmployees() {
