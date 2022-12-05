@@ -205,13 +205,13 @@ function viewRoles() {
 }
 
 function viewDepartment() {
-db.findAllDepartments().then(([rows]) => {
-  let department = rows;
-  const departmentChoice = department.map(({ id, name} ) => ({
-    name: name,
-    value: id
-  }))
-})
+  db.findAllDepartments()
+    .then(([rows]) => {
+      let departments = rows;
+      console.log("\n");
+      console.table(departments);
+    })
+    .then(() => startQuestions());
 }
 
 
