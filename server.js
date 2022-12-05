@@ -136,40 +136,36 @@ function addEmployee() {
 };
 
 function addRole() {
-  console.log("new role incoming");
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        message: "Enter the new Role name.",
-        name: "name",
-      },
-      {
-        type: "input",
-        message: "Enter the salary for this role.",
-        name: "salary",
-      },
-      {
-        type: "input",
-        message: "What department is this role in?",
-        name: "departmentName",
-      },
-    ])
-    .then((response) => {
-      connection.query(
-        "SELECT name FROM DEPARTMENT ",
+  db.findAllDepartments()
+    .then(([rows]) => {
+      let departments = rows;
+      const departmentChoices = departments.map(({ id, name }) => ({
+        name: name,
+        value: id
+      }));
+
+      prompt([
         {
-          title: response.name,
-          salary: response.salary,
-          department_id: response.deptId,
+          name: "title",
+          message: "What is the name of the role?"
         },
-        (err) => {
-          if (err) throw err;
-          console.log("Success!");
-          startQuestions();
+        {
+          name: "salary",
+          message: "What is the salary of the role?"
+        },
+        {
+          type: "list",
+          name: "department_id",
+          message: "Which department does the role belong to?",
+          choices: departmentChoices
         }
-      );
-    });
+      ])
+        .then(role => {
+          db.createRole(role)
+            .then(() => console.log(`Added ${role.title} to the database`))
+            .then(() => startQuestions())
+        })
+    })
 }
 
 function addDepartment() {
