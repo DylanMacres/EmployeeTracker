@@ -1,11 +1,13 @@
-INSERT INTO department (dept_name)
+INSERT INTO department
+    (name)
 VALUES ("Heart of House"),
         ('Front of House'),
         ("Management");
 
 
 
-INSERT INTO roles (title,salary,department_id)
+INSERT INTO role
+    (title, salary, department_id)
 VALUES("Cook", 40000, 1),
       ("server", 50000, 2),
       ("manager", 60000, 3),
@@ -13,8 +15,9 @@ VALUES("Cook", 40000, 1),
       ("gm", 90000, 5);
 
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Dylan", "Macres", 1, null),
+INSERT INTO employee
+    (first_name, last_name, role_id, manager_id)
+VALUES("Dylan", "Macres", 1, null),
         ("JoJo","Mora", 1, null),
         ("Anthony","Stanlert", 1, null),
         ("Sierra", "Petty", 2, null),

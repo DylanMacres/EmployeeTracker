@@ -191,14 +191,15 @@ db.findAllEmployees().then(([rows]) => {
 }) .then (() => startQuestions());
   };
 
-function viewRoles() {
-  connection.query("SELECT * FROM role", (err, res) => {
-    if (err) throw err;
-    console.log("Viewing Roles");
-    console.table(res);
-    startQuestions();
-  });
-}
+  function viewRoles() {
+    db.findAllRoles()
+      .then(([rows]) => {
+        let roles = rows;
+        console.log("\n");
+        console.table(roles);
+      })
+      .then(() => startQuestions());
+  }
 
 function viewDepartment() {
   db.findAllDepartments()
