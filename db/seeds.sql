@@ -5,7 +5,7 @@ VALUES ("Heart of House"),
 
 
 
-INSERT INTO role (title,salary,department_id)
+INSERT INTO roles (title,salary,department_id)
 VALUES("Cook", 40000, 1),
       ("server", 50000, 2),
       ("manager", 60000, 3),

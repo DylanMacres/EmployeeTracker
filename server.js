@@ -127,13 +127,13 @@ function addRole() {
       },
       {
         type: "input",
-        message: "Enter the ID for this department",
-        name: "deptId",
+        message: "What department is this role in?",
+        name: "departmentName",
       },
     ])
-    .then(function (response) {
+    .then((response) => {
       connection.query(
-        "INSERT INTO roles SET ?",
+        "SELECT name FROM DEPARTMENT ",
         {
           title: response.name,
           salary: response.salary,
@@ -160,30 +160,23 @@ function addDepartment() {
       },
     ])
     .then(function (response) {
-      connection.query(
-        "INSERT INTO department SET ?",
-        {
-          dept_name: response.newdept,
-        },
-        (err) => {
-          if (err) throw err;
+      connection.query(`INSERT INTO department(name)  VALUES ("${response.newdept}")`)
           console.log("Success!");
           startQuestions();
         }
       );
-    });
-}
+    };
+
 
 function viewEmployees() {
-  connection.query("SELECT * FROM employee", (err, res) => {
-    if (err) throw err;
-    console.log("Viewing Employees");
-    console.table(res);
-    startQuestions();
-  });
-}
+db.findAllEmployees().then(([rows]) => {
+  let employees =rows;
+  console.table(employees);
+}) .then (() => startQuestions());
+  };
+
 function viewRoles() {
-  connection.query("SELECT * FROM roles", (err, res) => {
+  connection.query("SELECT * FROM role", (err, res) => {
     if (err) throw err;
     console.log("Viewing Roles");
     console.table(res);
@@ -192,12 +185,13 @@ function viewRoles() {
 }
 
 function viewDepartment() {
-  connection.query("SELECT * FROM department", (err, res) => {
-    if (err) throw err;
-    console.log("Viewing Departments");
-    console.table(res);
-    startQuestions();
-  });
+db.findAllDepartments().then(([rows]) => {
+  let department = rows;
+  const departmentChoice = department.map(({ id, name} ) => ({
+    name: name,
+    value: id
+  }))
+})
 }
 
 
