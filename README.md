@@ -33,7 +33,6 @@ THEN I am prompted to select an employee to update and their new role and this i
   2. [Installation](#Installation)
   3. [Usage](#Usage)
   4. [Contributions](#credits)
-  5. [GitHub](#github)
   6. [Email](#email)
 
 
@@ -46,8 +45,7 @@ THEN I am prompted to select an employee to update and their new role and this i
   ## Contributions 
 This activity was given to me from the University of Denver bootcamp and help was provided from tudors Kirtley and George, with Dan as my instructor.
 
-  ## Github
-    DylanMacres
+
 
   ## E-Mail
     macresdylan@gmail.com
